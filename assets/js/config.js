@@ -117,7 +117,12 @@ window.SITE = {
     ytChannelId: "",        // "UCxxxxxxxxxxxxxxxxxxxxxx"
     ytApiKey: "",           // public YouTube Data API key
     insightsUrl: "data/insights.json",  // optional JSON written by a cron job
-    cacheMinutes: 60        // client-side cache so you do not burn API quota
+    cacheMinutes: 60,       // client-side cache so you do not burn API quota
+
+    // Set this to "/api/insights" ONLY when you deploy on Cloudflare, where
+    // the Worker holds the Instagram token server-side. Leave it blank on
+    // GitHub Pages so the site does not fire a request that would 404.
+    apiPath: ""
   },
 
   /* --------------------------------------------------- 4. AUDIENCE INSIGHTS */

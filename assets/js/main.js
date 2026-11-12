@@ -833,13 +833,16 @@
       };
     }
 
-    fetch('/api/insights', { cache: 'no-store' })
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (data) {
-        if (!data) return;
-        paintFlat(flatFrom(data), data.updated);
-      })
-      .catch(function () {});
+    var apiPath = L.apiPath || '';
+    if (apiPath) {
+      fetch(apiPath, { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+          if (!data) return;
+          paintFlat(flatFrom(data), data.updated);
+        })
+        .catch(function () {});
+    }
 
     // 1. Or a JSON file written by a scheduled job
     var jsonUrl = L.insightsUrl;
