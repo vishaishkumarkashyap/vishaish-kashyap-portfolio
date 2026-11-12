@@ -333,6 +333,28 @@ Change `--volt` and the whole site recolours.
 
 ---
 
+## 🖼️ The link-preview image
+
+`assets/img/og.jpg` (1200×630) is the image WhatsApp, LinkedIn, X and Instagram show when
+someone shares your site link. It is generated from the hero anchoring shot: name in Anton,
+role eyebrow, availability line and the VK monogram.
+
+**The `og:image` URL in `index.html` must be absolute** or the crawlers will not find it:
+
+```html
+<meta property="og:image" content="https://YOUR-DOMAIN/assets/img/og.jpg" />
+```
+
+Right now it points at the GitHub Pages URL. **If you add a custom domain later, update
+this line to your own domain**, otherwise your WhatsApp previews will keep using the
+long `github.io` link.
+
+To regenerate the image after changing your name or tagline, the easiest route is to
+re-run the canvas script that built it, or just drop a new 1200×630 JPEG in at
+`assets/img/og.jpg` with the same filename.
+
+---
+
 ## 🚀 Publishing it
 
 **Fastest (2 minutes) — Netlify Drop**
