@@ -353,7 +353,7 @@ Change `--volt` and the whole site recolours.
 1. Settings → Pages → deploy from branch → `main` / root.
 
 After you have a domain, add a `sitemap.xml` listing your one page, and replace
-`assets/img/og.png` with a 1200×630 image so link previews (WhatsApp, LinkedIn, iMessage)
+`assets/img/og.jpg` with a 1200×630 image so link previews (WhatsApp, LinkedIn, iMessage)
 show your photo when you share the link.
 
 ---
@@ -393,6 +393,6 @@ on every label. Lighthouse scores 100 across accessibility, best practices and S
 - [ ] `config.js` → SIX5SIX links added, then remove `pending: true`
 - [ ] `assets/js/main.js` → `briefBody` template edited to ask for what you actually need
 - [ ] `assets/media-kit.pdf` added, if you want a downloadable kit
-- [ ] `assets/img/og.png` added for link previews
+- [ ] `assets/img/og.jpg` is your link-preview image (1200x630, already generated)
 - [ ] `assets/img/favicon.png` is your tab icon (the SVG beside it is the vector version)
 - [ ] Open the site on your phone and check the mobile menu
