@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="VK">
+  <rect width="64" height="64" rx="14" fill="#d8ff3e"/>
+  <!-- Pure vector paths: SVG favicons are rendered without access to web fonts,
+       so a <text> element would fall back to a random system font. -->
+  <g fill="none" stroke="#0b0c0d" stroke-width="7" stroke-linecap="butt" stroke-linejoin="miter">
+    <path d="M15 17 L24 47 L33 17"/>
+    <path d="M40 17 L40 47"/>
+    <path d="M40 32 L51 17"/>
+    <path d="M40 32 L51 47"/>
+  </g>
+</svg>

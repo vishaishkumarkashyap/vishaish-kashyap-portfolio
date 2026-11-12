@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Add your domain once you have one, then uncomment:
+# Sitemap: https://yourdomain.com/sitemap.xml

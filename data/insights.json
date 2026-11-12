@@ -1,0 +1,7 @@
+{
+  "_comment": "Written by your scheduled job (GitHub Action or Apps Script). The site reads this file on load and patches the numbers over the static ones in config.js. Delete the file or leave it empty to fall back to the static numbers.",
+  "updated": null,
+  "combined":  { "views": null, "interactions": null, "profileViews": null },
+  "instagram": { "followers": null, "views": null, "interactions": null, "profileViews": null, "mediaCount": null },
+  "youtube":   { "subscribers": null, "views": null, "videos": null, "watchHours": null, "monthlyAudience": null }
+}

@@ -1,0 +1,45 @@
+name: Refresh insights
+
+# Pulls fresh Instagram + YouTube numbers and writes data/insights.json.
+# The static site reads that file, so the numbers on the site stay current.
+on:
+  schedule:
+    - cron: '17 */4 * * *'      # every 4 hours
+  workflow_dispatch:             # run it manually from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: insights
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch Instagram + YouTube numbers
+        env:
+          YT_API_KEY:    ${{ secrets.YT_API_KEY }}
+          YT_CHANNEL_ID: ${{ secrets.YT_CHANNEL_ID }}
+          IG_USER_ID:    ${{ secrets.IG_USER_ID }}
+          IG_TOKEN:      ${{ secrets.IG_TOKEN }}
+        run: node .github/refresh-insights.mjs
+
+      - name: Commit the refreshed numbers
+        run: |
+          git config user.name  "insights-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/insights.json
+          if git diff --staged --quiet; then
+            echo "No change"
+          else
+            git commit -m "chore: refresh insights $(date -u +%FT%TZ)"
+            git push
+          fi

@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+Thumbs.db
+
+# editors
+.vscode/
+.idea/
+*.swp
+
+# logs
+*.log
+npm-debug.log*
