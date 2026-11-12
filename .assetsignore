@@ -1,0 +1,11 @@
+# Keep repo files and server code out of the uploaded static assets.
+.git
+.github
+.gitignore
+.nojekyll
+node_modules
+.wrangler
+src
+README.md
+wrangler.jsonc
+.assetsignore

@@ -10,3 +10,8 @@ Thumbs.db
 # logs
 *.log
 npm-debug.log*
+
+# Cloudflare
+node_modules
+.wrangler
+.dev.vars

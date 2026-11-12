@@ -1,0 +1,34 @@
+{
+  // Cloudflare Workers · static assets
+  // Deploy with:  npx wrangler deploy
+  // Docs: https://developers.cloudflare.com/workers/static-assets/
+  "$schema": "node_modules/wrangler/config-schema.json",
+
+  "name": "vishaish-kashyap-portfolio",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-11-13",
+
+  // The site is uploaded straight from this folder.
+  // .assetsignore keeps the repo files and server code out of the upload.
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+    "not_found_handling": "none",
+    "html_handling": "auto-trailing-slash"
+  },
+
+  // ── Cloudflare asked for these to keep deployment in sync ──────────────
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "invocation_logs": true,
+      "persist": true
+    },
+    "traces": {
+      "enabled": false,
+      "head_sampling_rate": 1,
+      "persist": true
+    }
+  }
+}

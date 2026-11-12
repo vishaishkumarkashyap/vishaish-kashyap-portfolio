@@ -778,29 +778,9 @@
       if (!obj || !path) return null;
       return path.split('.').reduce(function (o, k) { return (o == null ? o : o[k]); }, obj);
     }
+    var badge = $('#liveBadge');
     function paint(data) {
-      var changed = 0;
-      $$('[data-live]').forEach(function (el) {
-        var raw = get(data, el.getAttribute('data-live'));
-        var p = splitNum(raw);
-        if (!p) return;
-        changed++;
-        if (el.classList.contains('istat2__v')) {
-          el.innerHTML = p.n + (p.s ? '<small>' + p.s + '</small>' : '');
-        } else {
-          el.textContent = p.n + p.s;
-        }
-        el.classList.add('is-live');
-      });
-      var badge = $('#liveBadge');
-      if (badge && changed) {
-        var when = data.updated || data.updatedAt;
-        badge.classList.add('is-on');
-        $('#liveWhen').textContent = when
-          ? 'Live · updated ' + relTime(when)
-          : 'Live';
-      }
-      return changed;
+      return paintFlat(data, data.updated || data.updatedAt);
     }
     function relTime(ts) {
       var t = new Date(ts).getTime();
@@ -819,7 +799,49 @@
       $('#liveWhen').textContent = text;
     }
 
-    // 1. Try a JSON file written by a scheduled job (best option: both platforms)
+    // 0. Best option when the site is on Cloudflare: the Worker proxy at
+    //    /api/insights holds the Instagram token server-side and returns
+    //    both platforms. Same origin, so no CORS, nothing exposed.
+    function paintFlat(flat, when) {
+      var changed = 0;
+      $$('[data-live]').forEach(function (el) {
+        var raw = get(flat, el.getAttribute('data-live'));
+        var p = splitNum(raw);
+        if (!p) return;
+        changed++;
+        if (el.classList.contains('istat2__v')) {
+          el.innerHTML = p.n + (p.s ? '<small>' + p.s + '</small>' : '');
+        } else {
+          el.textContent = p.n + p.s;
+        }
+        el.classList.add('is-live');
+      });
+      if (changed && badge) {
+        badge.classList.add('is-on');
+        $('#liveWhen').textContent = when ? 'Live · updated ' + relTime(when) : 'Live';
+      }
+      return changed;
+    }
+    function flatFrom(data) {
+      return {
+        views: get(data, 'combined.views'), interactions: get(data, 'combined.interactions'),
+        profileViews: get(data, 'combined.profileViews'), followers: get(data, 'instagram.followers'),
+        igFollowers: get(data, 'instagram.followers'), igViews: get(data, 'instagram.views'),
+        igInteractions: get(data, 'instagram.interactions'), igProfileViews: get(data, 'instagram.profileViews'),
+        subscribers: get(data, 'youtube.subscribers'), ytViews: get(data, 'youtube.views'),
+        watchHours: get(data, 'youtube.watchHours'), monthlyAudience: get(data, 'youtube.monthlyAudience')
+      };
+    }
+
+    fetch('/api/insights', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (!data) return;
+        paintFlat(flatFrom(data), data.updated);
+      })
+      .catch(function () {});
+
+    // 1. Or a JSON file written by a scheduled job
     var jsonUrl = L.insightsUrl;
     if (jsonUrl) {
       var bust = jsonUrl + (jsonUrl.indexOf('?') > -1 ? '&' : '?') + 'v=' + Math.floor(Date.now() / 3600000);

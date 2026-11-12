@@ -355,6 +355,66 @@ re-run the canvas script that built it, or just drop a new 1200×630 JPEG in at
 
 ---
 
+## ☁️ Deploying to Cloudflare
+
+The repo is set up for **Cloudflare Workers with static assets**. Everything you need is
+already here:
+
+```
+wrangler.jsonc        the config, including the observability block Cloudflare asked for
+src/worker.js         serves the site + the /api/insights endpoint
+.assetsignore         keeps repo files and server code out of the asset upload
+```
+
+**One-time setup**
+
+1. Install Node.js (v20 or newer) from [nodejs.org](https://nodejs.org)
+2. In this folder:
+
+```bash
+npm install -g wrangler        # or use npx instead of the global install
+wrangler login                  # opens a browser, approve the Worker
+```
+
+3. Deploy:
+
+```bash
+wrangler deploy
+```
+
+The site goes live on `https://vishaish-kashyap-portfolio.<your-subdomain>.workers.dev`.
+Add a custom domain in the Cloudflare dashboard under **Workers & Pages → your worker →
+Settings → Domains & Routes**.
+
+**Adding your API secrets** (this is what makes the Instagram numbers live)
+
+```bash
+wrangler secret put IG_TOKEN        # long-lived Meta Graph API token
+wrangler secret put IG_USER_ID      # numeric Instagram user id
+wrangler secret put YT_API_KEY      # public YouTube Data API key
+wrangler secret put YT_CHANNEL_ID   # your "UC..." channel id
+```
+
+They are stored encrypted by Cloudflare and never appear in the page source. The site's
+live layer calls `/api/insights` on the same origin, so there is no CORS problem and no
+token in the browser. See "Live numbers" above for how to get each value.
+
+**If you deploy to Cloudflare Pages instead of Workers**, use this in `wrangler.jsonc`:
+
+```jsonc
+{
+  "name": "vishaish-kashyap-portfolio",
+  "pages_build_output_dir": "./",
+  "observability": { "logs": { "enabled": true }, "traces": { "enabled": false } }
+}
+```
+
+Pages has no Worker runtime, so `/api/insights` will not exist there. Use the GitHub
+Action route in "Live numbers" instead, and the site falls back to `data/insights.json`
+automatically.
+
+---
+
 ## 🚀 Publishing it
 
 **Fastest (2 minutes) — Netlify Drop**
