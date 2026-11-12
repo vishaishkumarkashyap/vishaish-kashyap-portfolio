@@ -103,6 +103,13 @@ async function youtube() {
 /* ── Write ──────────────────────────────────────────────────────────────── */
 const [ig, yt] = await Promise.all([instagram().catch(() => null), youtube().catch(() => null)]);
 
+// Nothing to write if no secrets are configured. Skipping the write keeps the
+// repo quiet instead of committing an empty file every 4 hours.
+if (!ig && !yt) {
+  console.log('No secrets configured (YT_API_KEY / YT_CHANNEL_ID / IG_USER_ID / IG_TOKEN). Nothing to refresh.');
+  process.exit(0);
+}
+
 const existing = await import('node:fs/promises')
   .then((fs) => fs.readFile(OUT, 'utf8').then(JSON.parse).catch(() => ({})))
   .catch(() => ({}));
