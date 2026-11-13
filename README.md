@@ -43,7 +43,9 @@ assets/
     hero/football-1..3.jpg the three football frames that float around it
     brands/                the 13 real brand logos
     work/                  real thumbnails pulled from your posts
-    favicon.svg            site icon (monogram "VK")
+    favicon.svg            the lime "VK" tab icon, identical to the nav mark
+    favicon.png            180x180 PNG fallback for the tab
+    apple-touch-icon.png   180x180 square icon for iOS home screen
 ```
 
 ---
@@ -490,5 +492,7 @@ on every label. Lighthouse scores 100 across accessibility, best practices and S
 - [ ] `assets/js/main.js` → `briefBody` template edited to ask for what you actually need
 - [ ] `assets/media-kit.pdf` added, if you want a downloadable kit
 - [ ] `assets/img/og.jpg` is your link-preview image (1200x630, already generated)
-- [ ] `assets/img/favicon.png` is your tab icon (the SVG beside it is the vector version)
+- [ ] The browser tab shows the lime "VK" chip (the same mark as the nav). It is
+      `assets/img/favicon.svg`, with `favicon.png` as the fallback and
+      `apple-touch-icon.png` for iOS. Bump the `?v=` on those links if you change them.
 - [ ] Open the site on your phone and check the mobile menu

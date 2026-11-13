@@ -1,11 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="VK">
-  <rect width="64" height="64" rx="14" fill="#d8ff3e"/>
-  <!-- Pure vector paths: SVG favicons are rendered without access to web fonts,
-       so a <text> element would fall back to a random system font. -->
-  <g fill="none" stroke="#0b0c0d" stroke-width="7" stroke-linecap="butt" stroke-linejoin="miter">
-    <path d="M15 17 L24 47 L33 17"/>
-    <path d="M40 17 L40 47"/>
-    <path d="M40 32 L51 17"/>
-    <path d="M40 32 L51 47"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" width="38" height="38" role="img" aria-label="VK">
+  <rect width="38" height="38" rx="9" fill="#d8ff3e"/>
+  <!-- Same mark as the nav chip. SVG favicons are rendered without access
+       to web fonts, so the Anton letterforms are embedded as vector paths. -->
+  <g fill="#0b0c0d" fill-rule="nonzero">
+    <path transform="translate(10.9219 25.8906) scale(0.008203125 -0.008203125)" d="M240,0 L23,1761 L358,1761 L487,563 L602,1761 L937,1761 L720,0 L240,0 Z"/>
+    <path transform="translate(18.9688 25.8906) scale(0.008203125 -0.008203125)" d="M78,0 L78,1760 L426,1760 L426,1055 L590,1760 L944,1760 L747,954 L985,0 L620,0 L428,852 L428,0 L78,0 Z"/>
   </g>
 </svg>
