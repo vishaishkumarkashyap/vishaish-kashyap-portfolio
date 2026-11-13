@@ -22,7 +22,6 @@
 
   $('#navMark').textContent = S.name.initials || 'VK';
   $('#navName').textContent = S.name.full;
-  $('#navRole').textContent = S.role;
   $('#navAvail').lastChild.textContent = S.availability;
   $('#heroRole').textContent = S.role;
   $('#heroFirst').textContent = S.name.first;
@@ -167,19 +166,6 @@
           s.value + '</b><span>' + s.label + '</span></div>';
       }).join('') + '</div>' +
     '</div>';
-  }).join('');
-
-  $('#insightGroups').innerHTML = (INS.groups || []).map(function (g, gi) {
-    var rows = (g.rows || []).map(function (r, ri) {
-      var v = typeof r.value === 'number' ? r.value : 0;
-      return '<div class="ibar">' +
-        '<span class="ibar__label">' + r.label + '</span>' +
-        '<span class="ibar__track"><i class="ibar__fill" data-pct="' + Math.min(100, v) + '" style="--bd:' + (gi * 90 + ri * 70) + 'ms"></i></span>' +
-        '<span class="ibar__val">' + v + '%</span>' +
-      '</div>';
-    }).join('');
-    return '<div class="igroup" data-reveal="up" data-d="' + gi + '">' +
-      '<span class="igroup__title">' + g.title + '</span><div class="ibars">' + rows + '</div></div>';
   }).join('');
 
   /* ═══════════════════════════════════════ 2c. BRANDS: TWO SCROLLING ROWS ═ */
@@ -358,17 +344,8 @@
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
 
-  var barIO = new IntersectionObserver(function (entries) {
-    entries.forEach(function (en) {
-      if (!en.isIntersecting) return;
-      en.target.style.width = en.target.getAttribute('data-pct');
-      barIO.unobserve(en.target);
-    });
-  }, { threshold: 0.4 });
-
   function refreshObservers() {
     $$('[data-reveal]').forEach(function (el) { if (!el.classList.contains('is-in')) revealIO.observe(el); });
-    $$('.ibar__fill').forEach(function (el) { if (!el.dataset.filled) { el.dataset.filled = '1'; barIO.observe(el); } });
   }
 
   /* ═══════════════════════════════════════════════════════ 8. SCROLL ══════ */

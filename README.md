@@ -13,16 +13,20 @@ Upload the folder and it works.
 | # | Section | What it does |
 |---|---|---|
 | 01 | **About** | One statement, your two paragraphs, and the 4 things you do for a client as priority cards, right under the fold |
-| 02 | **Audience insights** | Views, interactions, profile visits, followers. Then a per-channel breakdown and who is watching |
+| 02 | **Existing work** | Only your best performing pieces, sorted by reach, filterable by platform. The full back catalogue lives behind the brand tiles |
 | 03 | **Brands** | Two counter-scrolling rows of brand logos. Tap one to open that brand's work |
-| 04 | **Selected work** | Only your best performing pieces, sorted by reach. The full back catalogue lives behind the brand tiles |
-| 05 | **Why work with me** | Four reasons: athlete first, cover it then scale it, one shoot every platform, measured not guessed |
-| 06 | **Formats I deliver** | The chips, nothing more |
-| 07 | **What brands say** | Testimonials |
-| 08 | **More than a creator** | The leagues and tournaments, and the four services with links to real anchoring and emcee work |
+| 04 | **Audience insights** | Views, interactions, profile visits, followers. Then a per-channel breakdown |
+| 05 | **More than a creator** | The leagues and tournaments, and the four services with links to real anchoring and emcee work |
+| 06 | **Why work with me** | Two reasons: athlete first, cover it then scale it. The banner itself is the link, no extra button |
+| 07 | **Formats I deliver** | The chips, nothing more |
+| 08 | **What brands say** | Testimonials |
 | 09 | **Let's work together** | Your email, your three socials, and a one-click brief |
 
 Every section answers one question a brand actually asks. Nothing repeats.
+
+> **Hover the big headline in section 05** and the full list of tournaments you have
+> covered slides open underneath it, then retracts when you move away. On a phone
+> there is no hover, so the list stays open instead.
 
 ---
 
@@ -142,6 +146,10 @@ To hide a piece from the grid, remove `featured: true`. To show one, add it.
 To promote a piece, raise its `reach` number. To pin one to the very top of the
 grid regardless of reach, add `pin: true` (the Nivia Ash turf campaign uses this).
 
+Five pieces (Greenex, Casence, Frido, Sova and the fitness post) are **not** featured on
+purpose, because each one already appears inside its own brand tile in section 03. They
+stay in the catalogue, so removing the `featured` flag later puts them back.
+
 ### Where to get each URL
 
 **YouTube**
@@ -164,9 +172,11 @@ which is why they look crisp on the cards but soft if blown up huge.
 
 ## ⭐ 4. The Anchor section
 
-Section **08** lists your leagues and tournaments, then the four things you can do for a
-client. Each service card carries a thumbnail and a link to a real piece of anchoring or
-emcee work, so a brand can check your on-ground record in one tap.
+Section **05** lists your leagues and tournaments, then the four things you can do for a
+client. The tournament list is a **hover reveal**: the big headline is the trigger,
+hovering it slides the list open with an orange rule down the left, and moving away
+retracts it. Each service card carries a thumbnail and a link to a real piece of anchoring
+or emcee work, so a brand can check your on-ground record in one tap.
 
 ```js
 services: [
@@ -321,7 +331,8 @@ All the design tokens sit at the very top of `assets/css/styles.css`:
   --ink:   #08090a;   /* page background */
   --paper: #f2efe8;   /* light text */
   --volt:  #d8ff3e;   /* accent colour  ← change this */
-  --flare: #ff4a17;   /* secondary accent */
+  --orange:#ff6a2b;   /* third accent: labels, icons, micro-details */
+  --flare: var(--orange);
   --violet:#6b4dff;   /* tertiary glow */
   --ff-display: 'Anton', ...;   /* headlines */
   --ff-body:    'Inter', ...;    /* body copy */
@@ -329,7 +340,9 @@ All the design tokens sit at the very top of `assets/css/styles.css`:
 }
 ```
 
-Change `--volt` and the whole site recolours.
+The palette is three hues: **volt** for the primary calls to action and the big numbers,
+**violet** for the glow, and **orange** for the small stuff, section numbers, card icons,
+brand labels and the anchor hover panel. Change `--volt` and the whole site recolours.
 
 ---
 
@@ -454,6 +467,7 @@ Everything is vanilla JS in `assets/js/main.js`, driven by `IntersectionObserver
 - Magnetic buttons that pull toward the cursor
 - Film grain and vignette overlay
 - Scroll-linked word-by-word highlighting in the About statement
+- **Hover-reveal tournament list** in the Anchor section, with an orange rule and a spring
 - Auto-playing testimonial slider (swipe and drag)
 - Sticky "Work with me" pill that appears after the hero
 - Nav that hides on scroll down and returns on scroll up

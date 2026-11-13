@@ -128,9 +128,9 @@ window.SITE = {
   /* --------------------------------------------------- 4. AUDIENCE INSIGHTS */
   /* Real numbers straight from the Instagram + YouTube dashboards. */
   insights: {
-    headline: "The audience behind the content",
+    headline: "9.9M views in 30 days",
     intro:
-      "Last 30 days across Instagram and YouTube. Real numbers, no rounding up.",
+      "Instagram and YouTube combined. Real numbers from the last 30 days, no rounding up.",
     range: "Sep 15 to Oct 20, 2026",
     stats: [
       { value: 9.9,   suffix: "M", label: "Views",          note: "across both channels", live: "views" },
@@ -163,33 +163,6 @@ window.SITE = {
       }
     ],
     groups: [
-      {
-        title: "Gender",
-        rows: [
-          { label: "Men", value: 75.2 },
-          { label: "Women", value: 24.8 }
-        ]
-      },
-      {
-        title: "Age range",
-        rows: [
-          { label: "25 to 34", value: 51.3 },
-          { label: "18 to 24", value: 26.6 },
-          { label: "35 to 44", value: 11.2 },
-          { label: "13 to 17", value: 5.7 },
-          { label: "45 plus",  value: 5.2 }
-        ]
-      },
-      {
-        title: "Top cities",
-        rows: [
-          { label: "Delhi", value: 28.8 },
-          { label: "Gurugram", value: 3.8 },
-          { label: "Mumbai", value: 2.7 },
-          { label: "Bengaluru", value: 2.3 },
-          { label: "Faridabad", value: 1.7 }
-        ]
-      }
     ]
   },
 
@@ -284,14 +257,14 @@ window.SITE = {
     { platform: "instagram", category: "brand", brand: "Greenex", brandKey: "greenex",
       title: "Behind every story I cover there's an athlete I train to be",
       metric: "2.3K", metricLabel: "reach",
-      thumb: "assets/img/work/greenex-post-2.jpg", featured: true, reach: 2300,
+      thumb: "assets/img/work/greenex-post-2.jpg",
       embed: "https://www.instagram.com/p/DRjVMdrkvRP/embed/",
       url: "https://www.instagram.com/p/DRjVMdrkvRP/" },
 
     { platform: "instagram", category: "fitness", brand: "My channel", brandKey: "",
       title: "Most people train for the mirror. Athletes train for the season.",
       metric: "106", metricLabel: "likes",
-      thumb: "assets/img/work/fitness-post-1.jpg", featured: true, reach: 106,
+      thumb: "assets/img/work/fitness-post-1.jpg",
       embed: "https://www.instagram.com/p/DZM8LZRyJUK/embed/",
       url: "https://www.instagram.com/p/DZM8LZRyJUK/" },
 
@@ -312,21 +285,21 @@ window.SITE = {
     { platform: "instagram", category: "brand", brand: "Casence", brandKey: "casence",
       title: "Magnetic phone holder, tested where it matters: on the pitch",
       metric: "162", metricLabel: "likes",
-      thumb: "assets/img/work/casence-reel-1.jpg", duration: "0:34", featured: true, reach: 162,
+      thumb: "assets/img/work/casence-reel-1.jpg", duration: "0:34",
       embed: "https://www.instagram.com/reel/DcqhFYZB-Tv/embed/",
       url: "https://www.instagram.com/reel/DcqhFYZB-Tv/" },
 
     { platform: "instagram", category: "brand", brand: "Frido", brandKey: "frido",
       title: "The problem Frido actually solves, told as a reel and not a spec sheet",
       metric: "146", metricLabel: "likes",
-      thumb: "assets/img/work/frido-reel-1.jpg", duration: "0:36", featured: true, reach: 146,
+      thumb: "assets/img/work/frido-reel-1.jpg", duration: "0:36",
       embed: "https://www.instagram.com/reel/DeqotM_ygvI/embed/",
       url: "https://www.instagram.com/reel/DeqotM_ygvI/" },
 
     { platform: "instagram", category: "brand", brand: "SOva Health", brandKey: "sova",
       title: "Low on energy? Your gut might be the issue",
       metric: "74", metricLabel: "likes",
-      thumb: "assets/img/work/sova-post-1.jpg", featured: true, reach: 74,
+      thumb: "assets/img/work/sova-post-1.jpg",
       embed: "https://www.instagram.com/p/DHvxHn8MVtR/embed/",
       url: "https://www.instagram.com/p/DHvxHn8MVtR/" },
 

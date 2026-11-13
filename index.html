@@ -16,7 +16,7 @@
 <meta property="og:image:alt" content="Vishaish Kumar Kashyap, sports journalist, fitness creator and anchor" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://vishaishkumarkashyap.github.io/vishaish-kashyap-portfolio/assets/img/og.jpg" />
-<meta name="twitter:title" content="Vishaish Kumar Kashyap — Sports Journalist &amp; Fitness Creator" />
+<meta name="twitter:title" content="Vishaish Kumar Kashyap · Sports Journalist &amp; Fitness Creator" />
 <meta name="twitter:description" content="On the ground. On the mic. On the pitch. Available for brand collaborations." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -85,7 +85,6 @@
       <span class="nav__mark" id="navMark">VK</span>
       <span class="nav__brandtext">
         <span class="nav__brandname" id="navName">Vishaish Kumar Kashyap</span>
-        <span class="nav__brandsub mono" id="navRole">Sports Journalist</span>
       </span>
     </a>
 
@@ -217,7 +216,6 @@
   </a>
 </section>
 
-<!-- ══════════════════════════════════════════════════════ ABOUT ═══════════ -->
 <section class="sec about" id="about">
   <div class="wrap">
     <div class="sec__head">
@@ -250,29 +248,31 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════ INSIGHTS ═══════════ -->
-<section class="sec insights" id="insights">
+<section class="sec work" id="work">
   <div class="wrap">
     <div class="sec__head">
       <span class="sec__num mono">02</span>
-      <h2 class="sec__title">Audience insights</h2>
+      <h2 class="sec__title">Existing Work</h2>
       <span class="sec__rule"></span>
-      <span class="mono sec__meta" id="insightRange"></span>
-      <span class="livebadge" id="liveBadge"><i></i><span id="liveWhen">Auto-updating</span></span>
+      <span class="mono sec__meta">Performing meta ads made for brands</span>
     </div>
 
-    <div class="insights__intro">
-      <h3 data-reveal="up" id="insightHeadline"></h3>
-      <p data-reveal="up" data-d="2" id="insightIntro"></p>
+    <div class="work__bar" data-reveal="up">
+      <div class="filters" id="workFilters" role="group" aria-label="Filter work by platform"></div>
+      <div class="work__channels" id="workChannels"></div>
     </div>
 
-    <div class="insights__stats" id="insightStats"></div>
-    <div class="insights__channels" id="insightChannels"></div>
-    <div class="insights__groups" id="insightGroups"></div>
+    <div class="work__grid" id="workGrid"></div>
+
+    <div class="work__foot" data-reveal="up">
+      <p class="mono">Looking for a specific campaign, athlete or format?</p>
+      <a href="#contact" class="link-arrow" id="workCta" data-magnetic>
+        <span>Ask me directly</span><svg class="ic"><use href="#i-arr"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════ BRANDS ═══════════ -->
 <section class="sec brands" id="brands">
   <div class="wrap">
     <div class="sec__head">
@@ -303,38 +303,59 @@
   </div>
 </section>
 
-<!-- ═════════════════════════════════════════════════════ WORK ═══════════ -->
-<section class="sec work" id="work">
+<section class="sec insights" id="insights">
   <div class="wrap">
     <div class="sec__head">
       <span class="sec__num mono">04</span>
-      <h2 class="sec__title">Existing Work</h2>
+      <h2 class="sec__title">Audience insights</h2>
       <span class="sec__rule"></span>
-      <span class="mono sec__meta">Performing meta ads made for brands</span>
+      <span class="mono sec__meta" id="insightRange">IG + YouTube, monthly</span>
+      <span class="livebadge" id="liveBadge"><i></i><span id="liveWhen">Auto-updating</span></span>
     </div>
 
-    <div class="work__bar" data-reveal="up">
-      <div class="filters" id="workFilters" role="group" aria-label="Filter work by platform"></div>
-      <div class="work__channels" id="workChannels"></div>
+    <div class="insights__intro">
+      <h3 data-reveal="up" id="insightHeadline"></h3>
+      <p data-reveal="up" data-d="2" id="insightIntro"></p>
     </div>
 
-    <div class="work__grid" id="workGrid"></div>
+    <div class="insights__stats" id="insightStats"></div>
+    <div class="insights__channels" id="insightChannels"></div>
+  </div>
+</section>
 
-    <div class="work__foot" data-reveal="up">
-      <p class="mono">Looking for a specific campaign, athlete or format?</p>
-      <a href="#contact" class="link-arrow" id="workCta" data-magnetic>
-        <span>Ask me directly</span><svg class="ic"><use href="#i-arr"/></svg>
-      </a>
+<section class="sec anchor" id="anchor">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="sec__num mono">05</span>
+      <h2 class="sec__title">More than a creator</h2>
+      <span class="sec__rule"></span>
+      <span class="mono sec__meta" id="anchorMeta"></span>
+    </div>
+
+    <div class="anchor__hero">
+      <div class="anchor__headline" tabindex="0">
+        <span class="anchor__kicker mono">On the ground</span>
+        <strong class="anchor__big" id="anchorHeadline"></strong>
+        <p class="anchor__sub" id="anchorSub"></p>
+        <ul class="anchor__sports" id="anchorSports"></ul>
+        <span class="anchor__hint mono">Hover for the tournaments covered</span>
+
+        <div class="anchor__pop" id="anchorPop">
+          <span class="mono anchor__tourlabel">Tournaments covered</span>
+          <ul class="anchor__tours" id="anchorTours"></ul>
+        </div>
+      </div>
+
+      <div class="anchor__services" id="anchorServices"></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════ WHY ════════════ -->
 <section class="sec why" id="why">
   <div class="why__glow" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec__head">
-      <span class="sec__num mono">05</span>
+      <span class="sec__num mono">06</span>
       <h2 class="sec__title">Why work with me</h2>
       <span class="sec__rule"></span>
       <span class="mono sec__meta">Two reasons, no fluff</span>
@@ -342,19 +363,18 @@
 
     <div class="why__grid" id="whyGrid"></div>
 
-    <div class="why__banner" data-reveal="up">
+    <a href="#contact" class="why__banner" data-reveal="up">
       <span class="why__bannertxt">Let's make something that isn't forgettable</span>
-      <a href="#contact" class="btn btn--volt" data-magnetic><span>Get in touch</span><svg class="ic"><use href="#i-arrow"/></svg></a>
-    </div>
+      <span class="why__bannergo mono">Start a brief <svg class="ic"><use href="#i-arrow"/></svg></span>
+    </a>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════ FORMATS ═══════════ -->
 <section class="sec formats" id="formats">
   <div class="wrap">
     <div class="formats__row">
       <div class="formats__lead">
-        <span class="sec__num mono">06</span>
+        <span class="sec__num mono">07</span>
         <h2 class="sec__title" id="formatsHeadline"></h2>
         <p id="formatsIntro"></p>
       </div>
@@ -363,11 +383,10 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════ TESTIMONIALS ══════════ -->
 <section class="sec words" id="words">
   <div class="wrap">
     <div class="sec__head">
-      <span class="sec__num mono">07</span>
+      <span class="sec__num mono">08</span>
       <h2 class="sec__title">What brands say</h2>
       <span class="sec__rule"></span>
       <span class="mono sec__meta">Feedback from past campaigns</span>
@@ -385,42 +404,6 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ MORE THAN A CREATOR ══════════ -->
-<section class="sec anchor" id="anchor">
-  <div class="wrap">
-    <div class="sec__head">
-      <span class="sec__num mono">08</span>
-      <h2 class="sec__title">More than a creator</h2>
-      <span class="sec__rule"></span>
-      <span class="mono sec__meta" id="anchorMeta"></span>
-    </div>
-
-    <div class="anchor__hero">
-      <div class="anchor__headline">
-        <span class="anchor__kicker mono">On the ground</span>
-        <strong class="anchor__big" id="anchorHeadline"></strong>
-        <p class="anchor__sub" id="anchorSub"></p>
-        <ul class="anchor__sports" id="anchorSports"></ul>
-      </div>
-
-      <div class="anchor__side">
-        <span class="mono anchor__tourlabel">Tournaments covered</span>
-        <ul class="anchor__tours" id="anchorTours"></ul>
-      </div>
-    </div>
-
-    <div class="anchor__services" id="anchorServices"></div>
-
-    <div class="anchor__work" data-reveal="up">
-      <span class="mono anchor__worklabel">Want the event covered?</span>
-      <a href="#contact" class="link-arrow" data-magnetic>
-        <span>Check my availability</span><svg class="ic"><use href="#i-arr"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════ CONTACT ═══════════ -->
 <section class="sec contact" id="contact">
   <div class="contact__glow" aria-hidden="true"></div>
   <div class="wrap">
