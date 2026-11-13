@@ -45,6 +45,7 @@ assets/
     work/                  real thumbnails pulled from your posts
     favicon.svg            the lime "VK" tab icon, identical to the nav mark
     favicon.png            180x180 PNG fallback for the tab
+    favicon.ico            multi-size icon (16/32/48/64/128/180)
     apple-touch-icon.png   180x180 square icon for iOS home screen
 ```
 
@@ -493,6 +494,8 @@ on every label. Lighthouse scores 100 across accessibility, best practices and S
 - [ ] `assets/media-kit.pdf` added, if you want a downloadable kit
 - [ ] `assets/img/og.jpg` is your link-preview image (1200x630, already generated)
 - [ ] The browser tab shows the lime "VK" chip (the same mark as the nav). It is
-      `assets/img/favicon.svg`, with `favicon.png` as the fallback and
-      `apple-touch-icon.png` for iOS. Bump the `?v=` on those links if you change them.
+      `assets/img/favicon.svg`, with `favicon.ico` (16 to 180px), `favicon.png`
+      and `apple-touch-icon.png` as the fallbacks. Bump the `?v=` on those four
+      `<link>` tags in `index.html` whenever you change the icon, or browsers
+      will keep serving the old one from their cache.
 - [ ] Open the site on your phone and check the mobile menu
