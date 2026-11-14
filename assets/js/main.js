@@ -247,7 +247,37 @@
       var show = key === 'all' || c.getAttribute('data-platform') === key;
       c.classList.toggle('is-hidden', !show);
     });
+    revealStrip();
   });
+
+  /* On phones the work grid becomes a horizontal strip, and the reveal observer
+     (which watches the viewport) can skip cards during a fast flick, leaving
+     them at opacity 0. Sweep the visible strip and reveal whatever is in it. */
+  var workGrid = $('#workGrid');
+  function revealStrip() {
+    if (!workGrid) return;
+    var cards = $$('#workGrid .wcard');
+    if (!cards.length) return;
+    var isStrip = getComputedStyle(workGrid).display.indexOf('flex') !== -1;
+    if (!isStrip) return;
+    var gr = workGrid.getBoundingClientRect();
+    cards.forEach(function (c, i) {
+      if (c.classList.contains('is-in')) return;
+      var r = c.getBoundingClientRect();
+      // anything that has reached the strip is revealed, even if a fast flick
+      // skipped over it before the observer could report it
+      if (r.left < gr.right - 4) {
+        c.style.setProperty('--rd', (i % 3) * 80 + 'ms');
+        c.classList.add('is-in');
+      }
+    });
+  }
+  if (workGrid) {
+    workGrid.addEventListener('scroll', revealStrip, { passive: true });
+    window.addEventListener('resize', revealStrip);
+    revealStrip();
+    window.setTimeout(revealStrip, 400);
+  }
 
   /* ══════════════════════════════════════════════ 4. WHY / FORMATS ═════ */
   $('#wordsTrack').innerHTML = (S.testimonials || []).map(function (t) {
@@ -735,6 +765,22 @@
         (S.name.initials || 'VK') + '</span>');
     });
   }
+
+  /* ───────────────────────────────────────────── 15c. ANCHOR TAP TO OPEN ─── */
+  /* There is no hover on a phone, so the tournament list opens when the
+     headline is tapped instead of hovered. */
+  (function anchorTap() {
+    var head = $('.anchor__headline');
+    if (!head) return;
+    head.addEventListener('click', function () {
+      head.classList.toggle('is-open');
+    });
+    document.addEventListener('click', function (e) {
+      if (!head.classList.contains('is-open')) return;
+      if (head.contains(e.target)) return;
+      head.classList.remove('is-open');
+    });
+  })();
 
   /* ═══════════════════════════════════════════ 15b. LIVE INSIGHTS FETCH ═══ */
   /* Pulls fresh numbers and patches them over the static ones.

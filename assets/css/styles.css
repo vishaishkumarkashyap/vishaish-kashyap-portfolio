@@ -716,6 +716,7 @@ ul{ list-style:none; }
 .insights__intro h3{
   font-family:var(--ff-display); font-size:clamp(1.5rem,3.4vw,2.6rem);
   text-transform:uppercase; line-height:1.03; letter-spacing:-.015em; max-width:22ch;
+  color:var(--orange);
 }
 .insights__intro p{ color:var(--text-dim); max-width:48ch; }
 
@@ -865,6 +866,7 @@ ul{ list-style:none; }
 }
 .anchor__tourlabel{ display:block; margin-bottom:14px; color:var(--orange); }
 .anchor__hint{ display:block; margin-top:16px; color:var(--orange); letter-spacing:.14em; }
+.anchor__hint--tap{ display:none; }
 .anchor__headline{ position:relative; outline:none; }
 .anchor__pop{
   overflow:hidden; max-height:0; opacity:0; margin-top:0;
@@ -873,7 +875,8 @@ ul{ list-style:none; }
 }
 .anchor__headline:hover .anchor__pop,
 .anchor__headline:focus-visible .anchor__pop,
-.anchor__headline:focus-within .anchor__pop{
+.anchor__headline:focus-within .anchor__pop,
+.anchor__headline.is-open .anchor__pop{
   max-height:440px; opacity:1; margin-top:22px;
 }
 .anchor__pop .anchor__tours{ padding-bottom:4px; }
@@ -1116,6 +1119,17 @@ ul{ list-style:none; }
 .wcard__link .ic{ transition:transform .35s var(--ease); }
 .wcard__link:hover .ic{ transform:translate(3px,-3px); }
 
+.work__swipe{
+  display:none;
+  align-items:center; gap:.5em;
+  margin-top:12px;
+  font-size:.56rem; letter-spacing:.16em; text-transform:uppercase; color:var(--orange);
+}
+.work__swipe::after{
+  content:""; width:1.6em; height:1px; background:currentColor;
+  animation:swipeHint 1.8s var(--ease-io) infinite;
+}
+@keyframes swipeHint{ 0%,100%{ transform:translateX(-30%); opacity:.4 } 50%{ transform:translateX(30%); opacity:1 } }
 .work__foot{
   margin-top:clamp(16px,2.2vw,30px);
   display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px 26px;
@@ -1574,43 +1588,169 @@ ul{ list-style:none; }
   .scrollcue{ display:none; }
   .priority{ grid-template-columns:repeat(2,1fr); }
   .insights__stats{ grid-template-columns:repeat(2,1fr); }
+  .insights__intro{ grid-template-columns:1fr; }
+  /* the anchor headline and the service cards cannot sit side by side here */
+  .anchor__hero{ grid-template-columns:1fr; }
   .anchor__services{ grid-template-columns:repeat(2,1fr); }
+
+  /* the work grid becomes a swipeable strip instead of a stack */
+  .work__bar{ gap:10px; margin-bottom:16px; padding-bottom:12px; }
+  .filters, .work__channels{
+    flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none;
+    margin-inline:calc(var(--gut) * -1); padding-inline:var(--gut);
+  }
+  .filters::-webkit-scrollbar, .work__channels::-webkit-scrollbar{ display:none; }
+  .filters{ gap:6px; }
+  .filters button{ flex:none; padding:.48rem .78rem; font-size:.58rem; }
+  .work__channels{ gap:6px; }
+  .work__channels a{ flex:none; padding:.44rem .7rem; font-size:.56rem; }
+  .work__grid{
+    --strip-w: min(46vw,380px);
+    display:flex; gap:12px;
+    overflow-x:auto; scroll-snap-type:x mandatory;
+    margin-inline:calc(var(--gut) * -1); padding-inline:var(--gut);
+    padding-bottom:6px;
+    scroll-padding-inline:var(--gut);
+    overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .work__grid::-webkit-scrollbar{ display:none; }
+  .work__grid > .wcard{ flex:0 0 var(--strip-w); scroll-snap-align:start; }
+  .wcard__thumb{ aspect-ratio:4/3; }
+  .wcard--yt .wcard__thumb{ aspect-ratio:16/9; }
+  .work__swipe{ display:flex; }
   .formats__row{ grid-template-columns:1fr; }
   .floaters{ inset:-2% -6% 0 -4%; }
   .floater--2{ right:-4%; }
   .floater--3{ display:none; }
-  .priority{ grid-template-columns:1fr; }
   .insights__channels{ grid-template-columns:1fr; }
-  .anchor__services{ grid-template-columns:1fr; }
-  .contact__grid{ grid-template-columns:1fr; }
   .brands__cta{ flex-direction:column; align-items:flex-start; }
   .photo__band{ flex-wrap:wrap; height:auto; }
   .photo__cell{ flex:1 1 44%; height:clamp(150px,30vw,210px); }
   .photo__cell--wide{ flex:1 1 100%; height:clamp(190px,44vw,280px); }
 }
 
-/* No hover capability (phones, tablets): keep the tournament list open */
+/* No hover capability (phones, tablets): the list stays closed until the
+   headline is tapped, so the section does not push everything else down */
 @media (hover:none){
-  .anchor__pop{ max-height:440px; opacity:1; margin-top:20px; }
+  .anchor__hint--hover{ display:none; }
+  .anchor__hint--tap{ display:inline; }
+  .anchor__pop{ max-height:0; opacity:0; margin-top:0; }
+  .anchor__headline.is-open .anchor__pop{
+    max-height:440px; opacity:1; margin-top:14px;
+  }
 }
 
-/* 720 — small phones */
+/* ───────────────────────────────── 720 — phones ─────────────────────────────
+   One screen per idea. Two-column sections collapse, the work grid becomes a
+   swipeable strip instead of a stack, and type steps down so nothing is
+   cramped. The desktop layout is untouched.                                    */
 @media (max-width:720px){
   :root{ --nav-h:66px; }
-  .hero{ padding-top:calc(var(--nav-h) + 24px); }
+
+  /* ── global rhythm ── */
+  .sec{ padding-block:40px; }
+  .sec__head{ margin-bottom:16px; gap:10px; flex-wrap:wrap; }
+  .sec__title{ white-space:normal; font-size:clamp(1.9rem,8.6vw,2.7rem); }
+  .sec__rule{ display:none; }
+  .sec__meta{ font-size:.55rem; }
+
+  /* ── hero ── */
+  .hero{ padding-top:calc(var(--nav-h) + 12px); padding-bottom:30px; }
+  .hero__inner{ gap:20px; }
+  .hero__name{ font-size:clamp(3rem,13.5vw,4.4rem); margin-top:14px; }
+  .hero__tag{ margin-top:13px; font-size:.97rem; }
+  .hero__actions{ gap:8px; }
+  .hero__actions .btn{ padding:.78rem 1.1rem; font-size:.7rem; }
+  .hero__chips{ margin-top:18px; gap:6px; }
+  .hero__chips li{ font-size:.55rem; padding:.32rem .55rem; }
   .hero__right{ max-width:100%; }
-  .seal{ width:88px; height:88px; top:-16px; right:-6px; }
-  .seal__text{ font-size:9.4px; }
-  .work__grid{ grid-template-columns:1fr; }
+  .portrait__frame{ aspect-ratio:1/1; }
+  .portrait__stack{ inset:10px -10px -10px 10px; }
+  .floater{ width:96px; }
+  .seal{ width:74px; height:74px; top:-12px; right:-4px; }
+  .seal__text{ font-size:8px; }
+
+  /* ── about: priority cards stay two-up ── */
+  .about__grid{ gap:18px; }
+  .priority{ grid-template-columns:repeat(2,1fr); gap:8px; margin-top:16px; }
+  .pcard{ padding:13px 12px; }
+  .pcard__ic{ width:34px; height:34px; border-radius:9px; margin-bottom:10px; }
+  .pcard__ic .ic{ width:17px; height:17px; }
+  .pcard__t{ font-size:.9rem; }
+  .pcard__b{ font-size:.77rem; line-height:1.45; margin-top:6px; }
+  .pcard__n{ top:10px; right:11px; font-size:1rem; }
+
+  /* ── work: one card at a time, so you never scroll past 11 huge videos
+        just to reach Brands ── */
+  .work__grid{ --strip-w: min(78vw,300px); gap:10px; }
+  .wcard__thumb{ aspect-ratio:1/1; }
+  .wcard--yt .wcard__thumb{ aspect-ratio:16/10; }
+  .wcard__body{ padding:13px 13px 12px; gap:.45rem; }
+  .wcard__title{ font-size:.92rem; line-height:1.3; }
+  .wcard__foot{ padding-top:10px; }
+  .wcard__metric b{ font-size:1.15rem; }
+  .wcard__link{ font-size:.54rem; }
+  .work__foot{ margin-top:14px; gap:10px; }
+  .work__foot p{ font-size:.56rem; }
+
+  /* ── brands ── */
   .brands__grid{ grid-template-columns:repeat(2,1fr); }
+  .brands__intro{ margin-bottom:14px; }
+
+  /* ── insights ── */
+  .insights__intro{ grid-template-columns:1fr; gap:10px; margin-bottom:14px; }
+  .insights__intro h3{ font-size:clamp(1.6rem,7.6vw,2.3rem); max-width:none; }
+  .insights__stats{ gap:8px; margin-bottom:8px; }
+  .istat2{ padding:13px; }
+  .istat2__v{ font-size:clamp(1.65rem,7.4vw,2.2rem); }
+  .istat2__l{ font-size:.84rem; margin-top:6px; }
+  .istat2__n{ font-size:.5rem; margin-top:3px; }
+  .chan{ padding:13px; }
+  .chan__head{ margin-bottom:10px; gap:9px; }
+  .chan__ic{ width:34px; height:34px; }
+
+  /* ── anchor: one column, so the headline and the services stop colliding ── */
+  .anchor__hero{ grid-template-columns:1fr; gap:18px; }
+  .anchor__big{ font-size:clamp(1.9rem,8.4vw,2.7rem); line-height:.88; }
+  .anchor__sub{ font-size:.95rem; margin-top:12px; max-width:none; }
+  .anchor__sports{ margin-top:14px; gap:5px; }
+  .anchor__sports li{ font-size:.52rem; padding:.28rem .5rem; }
+  .anchor__hint{ margin-top:12px; font-size:.55rem; }
+  .anchor__pop{ margin-top:12px; padding-left:12px; }
+  .anchor__tourlabel{ font-size:.55rem; margin-bottom:10px; }
+  .anchor__tours{ gap:8px; }
+  .anchor__tours li{ font-size:.84rem; }
+  .anchor__services{ grid-template-columns:repeat(2,1fr); gap:8px; }
+  .aserv__thumb{ aspect-ratio:4/3; }
+  .aserv__badge{ top:6px; left:6px; font-size:.45rem; padding:.22rem .4rem; }
+  .aserv__body{ padding:11px 11px 12px; gap:5px; }
+  .aserv__t{ font-size:.86rem; }
+  .aserv__b{ font-size:.76rem; line-height:1.4; }
+  .aserv__go{ padding-top:8px; font-size:.5rem; }
+
+  /* ── why ── */
+  .whycard{ padding:18px; }
+  .whycard__body{ font-size:.88rem; line-height:1.55; }
+  .why__banner{ padding:16px; gap:10px; }
+  .why__bannertxt{ font-size:1.05rem; }
+
+  /* ── formats / words / contact ── */
+  .formats__row{ gap:14px; }
+  .formats__lead h2{ font-size:1.5rem; }
+  .word{ padding-right:16px; gap:14px; }
+  .word__quote{ font-size:1.05rem; }
+  .contact__grid{ gap:16px; }
+  .direct{ padding:14px; }
+  .direct__ic{ width:36px; height:36px; }
+
+  /* ── misc ── */
   .whycard,.whycard:nth-child(n){ grid-column:span 6; }
   .foot__inner{ grid-template-columns:1fr; }
   .foot__bottom{ flex-direction:column; align-items:flex-start; }
-  .stickycta{ right:14px; bottom:14px; padding:.75rem 1.05rem; }
+  .stickycta{ right:12px; bottom:12px; padding:.6rem .88rem; font-size:.64rem; }
   .modal__embed.is-instagram{ min-height:520px; }
   .modal__embed.is-linkedin{ min-height:420px; }
-  .sec__title{ white-space:normal; }
-  .sec__head{ flex-wrap:wrap; }
   .cloud__inner{ grid-template-columns:repeat(2,1fr); }
   .btile__arrow{ display:none; }
   .bm__stage.is-ig{ min-height:480px; }

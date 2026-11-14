@@ -8,6 +8,37 @@ Upload the folder and it works.
 
 ---
 
+## 📱 Mobile
+
+The desktop layout is the default. Everything mobile lives in one place:
+`@media (max-width:720px)` (phones) and `@media (max-width:960px)` (tablets)
+at the bottom of `assets/css/styles.css`.
+
+**The work grid becomes a horizontal strip.** On a phone, eleven full-size video
+cards stacked up meant 7,000px of scrolling before you reached Brands. It is now a
+snap-scrolling row: one card at a time, the next one peeking. Tap a card to open
+the video.
+
+**Two-column sections collapse to one.** The Anchor headline and its service
+cards could not sit side by side below 960px, so the anchor section now stacks
+instead of colliding.
+
+**The tournament list is tap-to-open on touch devices.** There is no hover on a
+phone, so the headline is tapped to open the list, and the hint text changes from
+"Hover..." to "Tap..." automatically.
+
+Measured at 390px wide, the whole page went from **19.5 screens of scrolling to
+10.1**.
+
+| | before | after |
+|---|---|---|
+| Total page | 16,437px | 8,560px |
+| Existing Work | 7,085px | 851px |
+| About | 1,501px | 1,022px |
+| Anchor | 1,519px | 969px |
+
+---
+
 ## 📐 The page, top to bottom
 
 | # | Section | What it does |

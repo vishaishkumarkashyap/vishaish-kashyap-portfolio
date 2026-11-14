@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/css/styles.css" />
+<link rel="stylesheet" href="assets/css/styles.css?v=6" />
 <link rel="icon" href="favicon.ico?v=4" sizes="any" />
 <link rel="icon" href="assets/img/favicon.svg?v=4" type="image/svg+xml" />
 <link rel="icon" href="assets/img/favicon.png?v=4" type="image/png" sizes="180x180" />
@@ -265,6 +265,8 @@
 
     <div class="work__grid" id="workGrid"></div>
 
+    <p class="mono work__swipe" aria-hidden="true">Swipe for more work</p>
+
     <div class="work__foot" data-reveal="up">
       <p class="mono">Looking for a specific campaign, athlete or format?</p>
       <a href="#contact" class="link-arrow" id="workCta" data-magnetic>
@@ -339,7 +341,7 @@
         <strong class="anchor__big" id="anchorHeadline"></strong>
         <p class="anchor__sub" id="anchorSub"></p>
         <ul class="anchor__sports" id="anchorSports"></ul>
-        <span class="anchor__hint mono">Hover for the tournaments covered</span>
+        <span class="anchor__hint mono"><span class="anchor__hint--hover">Hover for the tournaments covered</span><span class="anchor__hint--tap">Tap for the tournaments covered</span></span>
 
         <div class="anchor__pop" id="anchorPop">
           <span class="mono anchor__tourlabel">Tournaments covered</span>
@@ -577,7 +579,7 @@
   </div>
 </noscript>
 
-<script src="assets/js/config.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/config.js?v=6"></script>
+<script src="assets/js/main.js?v=6"></script>
 </body>
 </html>
